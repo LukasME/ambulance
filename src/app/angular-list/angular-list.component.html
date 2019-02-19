@@ -1,0 +1,6 @@
+
+<mat-accordion [multi]="false">
+  <ng-container *ngFor="let entry of waitingList | async">
+    <app-waiting-entry [data]="entry"></app-waiting-entry>
+  </ng-container>
+</mat-accordion>
