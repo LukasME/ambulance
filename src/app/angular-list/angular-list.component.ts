@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of} from 'rxjs';
-import { WaitingListEntry } from '../model/waiting-list-entry';
-
+import { WaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry.model';
+import { Store, select } from '@ngrx/store';
+import { State, selectWaitingList } from '../store';
+import * as fromWaitingList from '../store/waiting-list-entry/waiting-list-entry.reducer';
 
 @Component({
   selector: 'app-angular-list',
@@ -10,28 +12,14 @@ import { WaitingListEntry } from '../model/waiting-list-entry';
 })
 export class AngularListComponent implements OnInit {
 
-  public readonly waitingList: Observable<WaitingListEntry[]>;
   private static readonly MINUTE = 60 * 1000;
+  public readonly waitingList: Observable<WaitingListEntry[]>;
 
-  constructor() {
-    this.waitingList = of([
-      {
-        name: 'Janko',
-        patientId: '123',
-        since: new Date(Date.now() - 30 * AngularListComponent.MINUTE),
-        estimated: new Date(Date.now() - 30 * AngularListComponent.MINUTE),
-        estimatedDurationMinutes: 15,
-        condition: 'Nadcha'
-      },
-      {
-        name: 'Andrejko',
-        patientId: '124',
-        since: new Date(Date.now() - 30 * AngularListComponent.MINUTE),
-        estimated: new Date(Date.now() - 30 * AngularListComponent.MINUTE),
-        estimatedDurationMinutes: 35,
-        condition: 'Ja neviem uš'
-      }
-    ]);
+  constructor(private store: Store<State>) {
+    this.waitingList = store.pipe(
+      select(selectWaitingList),
+      select(fromWaitingList.adapter.getSelectors().selectAll)
+    );
   }
 
   ngOnInit() {

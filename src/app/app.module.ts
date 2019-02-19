@@ -7,6 +7,12 @@ import { AngularListComponent } from './angular-list/angular-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { WaitingEntryComponent } from './waiting-entry/waiting-entry.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './effects/app.effects';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,7 @@ import { WaitingEntryComponent } from './waiting-entry/waiting-entry.component';
     MatIconModule,
     MatExpansionModule, 
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule, StoreModule.forRoot(reducers, { metaReducers }), !environment.production ? StoreDevtoolsModule.instrument() : [], EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

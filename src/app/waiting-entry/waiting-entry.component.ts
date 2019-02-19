@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WaitingListEntry } from '../model/waiting-list-entry';
+import { WaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry.model';
 
 @Component({
   selector: 'app-waiting-entry',
