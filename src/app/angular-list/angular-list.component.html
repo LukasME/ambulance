@@ -4,3 +4,7 @@
     <app-waiting-entry [data]="entry" (delete)="onDelete($event)"></app-waiting-entry>
   </ng-container>
 </mat-accordion>
+
+<a mat-fab [routerLink]="['/waiting-list', 'new']" class="add-new">
+  <mat-icon>add</mat-icon>
+</a>

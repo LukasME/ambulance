@@ -4,3 +4,9 @@ mat-accordion {
     margin: auto;
     /* font-weight: bold; */
 }
+
+.add-new {
+    position: absolute;
+    right: 48px;
+    bottom: 32px;
+}

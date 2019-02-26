@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Informácie o čakajúcom</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>Vložte informácie o dôvode návštevy a usaďte sa</p>
+    <ng-container *ngIf="data$ | async as data">
+      <mat-form-field>
+        <input matInput placeholder="Meno a priezvisko" [(ngModel)]="data.name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Registracne cislo" [(ngModel)]="data.patientId">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Caka od" [value]="data.since | date:'shortTime'" readonly>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select matInput placeholder="Dovod navstevy" [value]="data.condition" readonly>
+          <mat-option *ngFor="let condition of knownConditions$ | async"
+            [value]="condition.concept">
+            {{condition.display}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Uložiť</button>
+    <button mat-button [routerLink]="['/waiting-list']">Zrušiť</button>
+  </mat-card-actions>
+</mat-card>
