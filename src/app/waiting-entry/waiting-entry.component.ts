@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { WaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry.model';
 
 @Component({
@@ -9,6 +9,8 @@ import { WaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry
 export class WaitingEntryComponent implements OnInit {
 
   @Input() data: WaitingListEntry;
+
+  @Output() public delete = new EventEmitter<WaitingListEntry>();
 
   constructor() { }
 

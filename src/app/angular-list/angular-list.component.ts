@@ -4,6 +4,7 @@ import { WaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry
 import { Store, select } from '@ngrx/store';
 import { State, selectWaitingList } from '../store';
 import * as fromWaitingList from '../store/waiting-list-entry/waiting-list-entry.reducer';
+import { DeleteWaitingListEntry } from '../store/waiting-list-entry/waiting-list-entry.actions';
 
 @Component({
   selector: 'app-angular-list',
@@ -23,6 +24,10 @@ export class AngularListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public onDelete(entry: WaitingListEntry){
+    this.store.dispatch(new DeleteWaitingListEntry({id: entry.id}));
   }
 
 }

@@ -19,4 +19,9 @@
   <mat-form-field>
     <input matInput placeholder="Predpokladaná doba návštevy [minúty]" [value]="data.estimatedDurationMinutes" readonly>
   </mat-form-field>
+  <mat-action-row>
+    <button mat-button (click)="delete.next(data)">
+      Zmazat zaznam
+    </button>
+  </mat-action-row>
 </mat-expansion-panel>

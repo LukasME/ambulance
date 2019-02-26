@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularListComponent } from './angular-list/angular-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { WaitingEntryComponent } from './waiting-entry/waiting-entry.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
@@ -26,8 +26,9 @@ import { AppEffects } from './effects/app.effects';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatExpansionModule, 
-    MatFormFieldModule, 
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatButtonModule,
     MatInputModule, StoreModule.forRoot(reducers, { metaReducers }), !environment.production ? StoreDevtoolsModule.instrument() : [], EffectsModule.forRoot([AppEffects])
   ],
   providers: [],
